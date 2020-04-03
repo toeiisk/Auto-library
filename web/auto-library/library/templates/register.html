@@ -4,7 +4,7 @@
 <div class="container">       
         <center><h1 class="h3 mb-3 font-weight-normal m-4">Create your account</h1></center>
         
-        <form action="#" method="POST">
+        <form action="{% url 'register' %}" method="POST">
         {% csrf_token %}
             <div class="row">
                 <div class="col-sm-6">

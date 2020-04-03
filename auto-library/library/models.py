@@ -23,5 +23,5 @@ class Book_info(models.Model):
     descri_book = models.CharField(max_length=250, default="", editable=True)
 
 class CalculateFines(models.Model):
-    date = models.DateField(_(""), auto_now=False, auto_now_add=False),
-    chrage = models.IntegerField(_(""))
+    date = models.DateField((""), auto_now=False, auto_now_add=False),
+    chrage = models.IntegerField((""))
