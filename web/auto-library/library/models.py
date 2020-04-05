@@ -10,10 +10,11 @@ class Computer(models.Model):
     status_com = models.CharField(max_length=250)
 
 class Publisher(models.Model):
-    date = models.DateField()
-    chrage = models.IntegerField()
+    name = models.CharField(max_length=250, default='SOME STRING')
+    address = models.CharField(max_length=250, default='SOME STRING')
 
 class Book_info(models.Model):
+    img_book = models.ImageField(upload_to='static/static_dirs/images/')
     type_book = models.CharField(max_length=250)
     name_book = models.CharField(max_length=250)
     amount_book = models.IntegerField()
