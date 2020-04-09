@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'library',
+    'mylibrary',
+    'category',
 ]
 
 MIDDLEWARE = [
@@ -76,15 +77,15 @@ WSGI_APPLICATION = 'autolibrary.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-                'default': {
-                    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                    'NAME': 'Autolibrary',
-                    'USER': 'postgres',
-                    'PASSWORD': '1234',
-                    'HOST': 'localhost',
-                    'PORT': '',
-                }
-            }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'autolibrary',
+        'USER': 'root',
+        'PASSWORD': 'Bk.122789zaza',
+        'HOST': 'borrabeer.ddns.net',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
@@ -129,7 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-LOGIN_URL = "/library/login.html"
+LOGIN_URL = "/mylibrary/login.html"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
