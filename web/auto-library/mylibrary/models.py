@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 
 class Tutor_room(models.Model):
     name_room = models.CharField(max_length=250, default='SOME STRING')
@@ -14,6 +15,7 @@ class Publisher(models.Model):
     address = models.CharField(max_length=250, default='SOME STRING')
 
 class Book_info(models.Model):
+    isbn = models.CharField(max_length=250, default='SOME STRING')
     img_book = models.ImageField(upload_to='static/static_dirs/images/')
     type_book = models.CharField(max_length=250)
     name_book = models.CharField(max_length=250)
@@ -23,14 +25,13 @@ class Book_info(models.Model):
     published_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
 
 class Borrow_Notes(models.Model):
-    number_borrowed = models.IntegerField()
-    status_book = models.CharField(max_length=250)
-    return_date = models.DateField()
-    date = models.DateField()
+    book_isbn = models.CharField(max_length=250, default='SOME STRING')
+    date = models.DateField(auto_now=True)
+    return_date = models.DateTimeField(default=datetime.now()+timedelta(days=7))
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class CalculateFines(models.Model):
-    date = models.DateField()
+    date = models.DateField(auto_now=True)
     chrage = models.IntegerField()
     librarian_id = models.ForeignKey(User, on_delete=models.CASCADE)
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
@@ -38,7 +39,7 @@ class CalculateFines(models.Model):
 class Borrower_Tutor_Room(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     tutor_room = models.ForeignKey(Tutor_room, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateField(auto_now=True)
     time = models.TimeField()
 
 class Borrower_Computer(models.Model):

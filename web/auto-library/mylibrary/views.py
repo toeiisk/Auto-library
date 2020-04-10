@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import auth_logout
 from django.contrib.auth.models import User, Group
+from datetime import date
 
 
 # Create your views here.
 def index(request):
-
     return render (request, 'index.html')
 
 def auth_login(request):
@@ -29,7 +29,6 @@ def auth_login(request):
         return render(request, 'login.html', context)
 
 def register(request):
-    
     context = {}
     if request.method == 'POST':
         try:
@@ -61,3 +60,12 @@ def register(request):
             context['error'] = str(e)
     
     return render(request, 'register.html')
+
+# d0 = date(2008, 8, 18)
+#     d1 = date(2008, 9, 26)
+#     amount = d1 - d0
+#     if amount.days > 7:
+#         amount = amount * 10
+#         print(amount.days)
+#     else:
+#         print(amount.days)

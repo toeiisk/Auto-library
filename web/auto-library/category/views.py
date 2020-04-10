@@ -6,3 +6,6 @@ def category(request):
 
 def blogbook(request):
     return render (request, 'category/book.html')
+
+
+
