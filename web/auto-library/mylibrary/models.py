@@ -13,11 +13,14 @@ class Computer(models.Model):
 class Publisher(models.Model):
     name = models.CharField(max_length=250, default='SOME STRING')
     address = models.CharField(max_length=250, default='SOME STRING')
+    def __str__(self):
+        return '(%s) %s' %(self.id, self.name) 
 
 class All_type(models.Model):
     all_type_name = models.CharField(max_length=250)
     def __str__(self):
-        return self.all_type_name
+        return '(%s) %s' %(self.id, self.all_type_name)
+
 class Book_type(models.Model):
     type_book = models.CharField(max_length=250, default='SOME STRING', editable=True)
     all_type_id =  models.ForeignKey(All_type, on_delete=models.PROTECT)
@@ -34,16 +37,16 @@ class Book_info(models.Model):
     descri_book = models.CharField(max_length=250)
     published_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name_book
+        return '(%s) %s' %(self.id, self.name_book)
 
 class Borrow_Notes(models.Model):
     book_isbn = models.CharField(max_length=250, default='SOME STRING')
-    date = models.DateField(auto_now=True)
-    return_date = models.DateTimeField(default=datetime.now()+timedelta(days=7))
+    date = models.DateTimeField()
+    return_date = models.DateTimeField()
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class CalculateFines(models.Model):
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField()
     chrage = models.IntegerField()
     librarian_id = models.ForeignKey(User, on_delete=models.CASCADE)
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
@@ -51,14 +54,12 @@ class CalculateFines(models.Model):
 class Borrower_Tutor_Room(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     tutor_room = models.ForeignKey(Tutor_room, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=True)
-    time = models.TimeField()
+    date = models.DateTimeField()
 
 class Borrower_Computer(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.DateTimeField()
 
 class Borrow_Book_Info(models.Model):
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)

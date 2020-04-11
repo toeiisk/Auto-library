@@ -29,40 +29,49 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link h5 text-light" href="{% url 'category' %}">Category</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle h5 text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Category
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'category' %}">Lorem ipsum</a>
+              <a class="dropdown-item" href="{% url 'category' %}">Lorem ipsum</a>
+              <a class="dropdown-item" href="{% url 'category' %}">Lorem ipsum</a>
+            </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link h5 text-light" href="#">Book</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %} 
-                    {% if user.is_superuser %}
-                        <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-                          <p class="h5 text-white font-weight-light">แก้ไขหนังสือ</p>
-                        </a>
-                    {% else %}
-                        <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-                          <p class="h5 text-white font-weight-light">Profile</p>
-                        </a>
-                    {% endif %}
-              {% endif %}
-              {% if user.is_anonymous  %}
-                  <a href="{% url 'login' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-                      <p class="h5 text-white font-weight-light">Login</p>
-                  </a>
-              {% endif %}
+          {% if user.is_authenticated %}
+          {% if user.is_superuser %}
+          <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+            <p class="h5 text-white font-weight-light">แก้ไขหนังสือ</p>
+          </a>
+          {% else %}
+          <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+            <p class="h5 text-white font-weight-light">Profile</p>
+          </a>
+          {% endif %}
+          {% endif %}
+          {% if user.is_anonymous  %}
+          <a href="{% url 'login' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+            <p class="h5 text-white font-weight-light">Login</p>
+          </a>
+          {% endif %}
           </li>
           <li class="nav-item">
-            {% if user.is_authenticated %} 
-                  <a href="{% url 'my_logout' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-                    <p class="h5 text-white font-weight-light">Logout</p>
-                  </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'my_logout' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+              <p class="h5 text-white font-weight-light">Logout</p>
+            </a>
             {% else %}
-                  <a href="{% url 'register' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-                      <p class="h5 text-white font-weight-light">Register</p>
-                  </a>
+            <a href="{% url 'register' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+              <p class="h5 text-white font-weight-light">Register</p>
+            </a>
             {% endif %}
           </li>
         </ul>
