@@ -14,15 +14,27 @@ class Publisher(models.Model):
     name = models.CharField(max_length=250, default='SOME STRING')
     address = models.CharField(max_length=250, default='SOME STRING')
 
+class All_type(models.Model):
+    all_type_name = models.CharField(max_length=250)
+    def __str__(self):
+        return self.all_type_name
+class Book_type(models.Model):
+    type_book = models.CharField(max_length=250, default='SOME STRING', editable=True)
+    all_type_id =  models.ForeignKey(All_type, on_delete=models.PROTECT)
+    def __str__(self):
+        return self.type_book 
+
 class Book_info(models.Model):
     isbn = models.CharField(max_length=250, default='SOME STRING')
     img_book = models.ImageField(upload_to='static/static_dirs/images/')
-    type_book = models.CharField(max_length=250)
+    book_type_id = models.ForeignKey(Book_type, on_delete=models.PROTECT)
     name_book = models.CharField(max_length=250)
     amount_book = models.IntegerField()
     location_book = models.CharField(max_length=250)
     descri_book = models.CharField(max_length=250)
     published_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name_book
 
 class Borrow_Notes(models.Model):
     book_isbn = models.CharField(max_length=250, default='SOME STRING')

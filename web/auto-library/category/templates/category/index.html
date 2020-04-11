@@ -7,47 +7,64 @@
 <div class="list-book mt-5 mb-5">
     <div class="container mb-5">
         <div class="row mt-5">
-            <div class="col-md-10">
-                <p class="h2 font-weight-bolder">ชื่อประเภทหนังสือ XXXXXXXX</p>
-                <div class="card-deck text-center">
-                    <div class="card shadow rounded mt-5" style="width: 11rem;">
-                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
-                            <p class="card-text">ผู้แต่ง: XXXX</p>
-                            <hr>
-                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
-                        </div>
-                    </div>
-                    <div class="card shadow rounded mt-5" style="width: 11rem;">
-                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
-                            <p class="card-text">ผู้แต่ง: XXXX</p>
-                            <hr>
-                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
-                        </div>
-                    </div>
-                    <div class="card shadow rounded mt-5" style="width: 11rem;">
-                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
-                            <p class="card-text">ผู้แต่ง: XXXX</p>
-                            <hr>
-                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
-                        </div>
-                    </div>
-                    <div class="card shadow rounded mt-5" style="width: 11rem;">
-                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
-                            <p class="card-text">ผู้แต่ง: XXXX</p>
-                            <hr>
-                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-10">              
+                {% for at in alltype %}
+                {% for bt in  booktype%}
+                    {% if bt.all_type_id.id  == at.id%}
+                        <p class="h2 font-weight-bolder"> {{bt.type_book}}</p>
+                        <div class="card-deck text-center">
+                    {% for bk in allbook %}  
+                        {% if bk.book_type_id.id == bt.id %}
+                                {% for pb in  publisher %}
+                                {% if bk.published_id.id == pb.id %}
+                                    <div class="card shadow rounded mt-5" style="width: 11rem;">
+                                        <img class="card-img-top" src="{{ bk.img_book.url}}" alt="Card imagecap" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">ชื่อหนังสือ: {{ bk.name_book }}</h5>
+                                            <p class="card-text">ผู้แต่ง: {{ bk.published_id.name }}</p>
+                                            <hr>
+                                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                        </div>      
+                    {% endif %}
+                {% endfor %}
+                {% endfor %}                               
             </div>
+   
+                    {% comment %} <div class="card shadow rounded mt-5" style="width: 11rem;">
+                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
+                        <div class="card-body">
+                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
+                            <p class="card-text">ผู้แต่ง: XXXX</p>
+                            <hr>
+                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
+                        </div>
+                    </div>
+                    <div class="card shadow rounded mt-5" style="width: 11rem;">
+                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
+                        <div class="card-body">
+                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
+                            <p class="card-text">ผู้แต่ง: XXXX</p>
+                            <hr>
+                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
+                        </div>
+                    </div>
+                    <div class="card shadow rounded mt-5" style="width: 11rem;">
+                        <img class="card-img-top" src="{% static 'book_4.jpg' %}" alt="Card imagecap" />
+                        <div class="card-body">
+                            <h5 class="card-title">ชื่อหนังสือ: XXXX</h5>
+                            <p class="card-text">ผู้แต่ง: XXXX</p>
+                            <hr>
+                            <a href="{% url 'blogbook' %}" class="btn btn-outline-info mt-auto text-center">DETAIL</a>
+                        </div>
+                    </div>  {% endcomment %}
+                {% comment %} </div> {% endcomment %}
+
             <div class="col-md-2">
                 <p class="text-info">Fillter</p>
                 <hr>

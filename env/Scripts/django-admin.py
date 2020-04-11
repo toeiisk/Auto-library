@@ -1,4 +1,4 @@
-#!c:\users\tle\desktop\auto-library-master\env\scripts\python.exe
+#!c:\users\asus\documents\github\auto-library\env\scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":

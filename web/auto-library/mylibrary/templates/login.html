@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 <div class="wrapper">
-    <form class="form-signin">
+    <form class="form-signin" action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
         <h2 class="form-signin-heading mb-3">Please login</h2>
         <input type="text" class="form-control mb-3" name="username"
             placeholder="Email Address" required="" autofocus="" />
@@ -13,6 +14,7 @@
                 name="rememberMe"> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        {{error}}
     </form>
 </div>
 {% endblock %}

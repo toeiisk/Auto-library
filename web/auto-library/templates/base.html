@@ -37,16 +37,33 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="{% url 'login' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-              <p class="h5 text-white font-weight-light">Login</p>
-            </a>
-
+          {% if user.is_authenticated %} 
+                    {% if user.is_superuser %}
+                        <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+                          <p class="h5 text-white font-weight-light">แก้ไขหนังสือ</p>
+                        </a>
+                    {% else %}
+                        <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+                          <p class="h5 text-white font-weight-light">Profile</p>
+                        </a>
+                    {% endif %}
+              {% endif %}
+              {% if user.is_anonymous  %}
+                  <a href="{% url 'login' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+                      <p class="h5 text-white font-weight-light">Login</p>
+                  </a>
+              {% endif %}
           </li>
           <li class="nav-item">
-            <a href="{% url 'register' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-              <p class="h5 text-white font-weight-light">Register</p>
-            </a>
+            {% if user.is_authenticated %} 
+                  <a href="{% url 'my_logout' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+                    <p class="h5 text-white font-weight-light">Logout</p>
+                  </a>
+            {% else %}
+                  <a href="{% url 'register' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+                      <p class="h5 text-white font-weight-light">Register</p>
+                  </a>
+            {% endif %}
           </li>
         </ul>
       </div>

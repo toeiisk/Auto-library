@@ -22,6 +22,7 @@ class Book_info(models.Model):
     descri_book = models.CharField(max_length=250)
     published_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
 
+
 class Borrow_Notes(models.Model):
     number_borrowed = models.IntegerField()
     status_book = models.CharField(max_length=250)
