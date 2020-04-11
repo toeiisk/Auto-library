@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mylibrary.models import Book_info, Publisher, Book_type, All_type
+from mylibrary.models import *
 
 # Create your views here.
 def category(request):
