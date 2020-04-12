@@ -5,7 +5,7 @@ from mylibrary.models import *
 
 
 class BorrowNotesForm(forms.Form):
-    book_isbn = forms.CharField(max_length=250, widget=forms.TextInput(attrs={
+    book_isbn = forms.ModelChoiceField(queryset=Book_info.objects.all(), widget=forms.TextInput(attrs={
         'class': 'form-control', 
         'readonly':'readonly'
         }))

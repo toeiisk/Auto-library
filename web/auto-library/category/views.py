@@ -48,18 +48,31 @@ def blogbook(request, num):
     )
 
 def computer(request):
+    count = 0
+    nubcom = Computer.objects.filter(status_com='AVAILABLE')
     computer = Computer.objects.all()
+     
+    for i in nubcom:
+        count += 1
     return render (request, 'category/computerpage.html', 
                     context = {
-                        'computer' : computer
+                        'count' : count,
+                        'computer' :computer
                     }
     )
     
 def tutor(request):
     tutorroom = Tutor_room.objects.all()
+    count = 0
+    nubroom = Tutor_room.objects.filter(status_room='AVAILABLE')
+
+    for i in nubroom:
+        count += 1
+
     return render (request, 'category/tutorpage.html', 
                     context = {
-                        'tutorroom' : tutorroom
+                        'tutorroom' : tutorroom,
+                        'count' : count
                     }
     )
 

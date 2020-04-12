@@ -28,7 +28,7 @@ class Computer(models.Model):
     img_com = models.ImageField(upload_to='static/static_dirs/images/computer/')
     status_com = models.CharField(max_length=12, choices=STATUS, default=AVAILABLE)
     def __str__(self):
-        return '(%s) %s' %(self.id, self.name_com) 
+        return '(%s) %s %s' %(self.id, self.name_com, self.status_com) 
 
 class Publisher(models.Model):
     name = models.CharField(max_length=250, default='SOME STRING')
