@@ -20,3 +20,15 @@ class BorrowNotesForm(forms.Form):
     borrow_user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={
         'class': 'form-control'
         }))
+
+class BorrowComForm(forms.Form):
+    date = forms.DateField(initial=datetime.now(), widget=forms.TextInput(attrs={
+        'class': 'form-control', 
+        'readonly':'readonly'
+        }))
+    computer = forms.ModelChoiceField(queryset=Computer.objects.all(), widget=forms.Select(attrs={
+        'class': 'form-control'
+        }))
+    borrow_user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={
+        'class': 'form-control'
+        }))

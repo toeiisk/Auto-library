@@ -8,7 +8,7 @@ def math(request):
     booktype = Book_type.objects.all()
     alltype = All_type.objects.all()
     
-    return render (request, 'category/index.html',
+    return render (request, 'category/mathpage.html',
                     context = {
                         'allbook' : allbook,
                         'publisher' : publisher,
@@ -31,8 +31,7 @@ def science(request):
                         'alltype' : alltype
                     }
                 )
-    
-
+                
 def blogbook(request, num):
     book = Book_info.objects.get(pk=num)
     booktype = Book_type.objects.all()
@@ -46,8 +45,22 @@ def blogbook(request, num):
                         'alltype' : alltype,
                         'allbook' : allbook
                     }
+    )
+
+def computer(request):
+    computer = Computer.objects.all()
+    return render (request, 'category/computerpage.html', 
+                    context = {
+                        'computer' : computer
+                    }
+    )
     
-    
+def tutor(request):
+    tutorroom = Tutor_room.objects.all()
+    return render (request, 'category/tutorpage.html', 
+                    context = {
+                        'tutorroom' : tutorroom
+                    }
     )
 
 

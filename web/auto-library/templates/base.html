@@ -30,26 +30,28 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle h5 text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle h5 text-light" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Category
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'math' %}">คณิตศาสต์</a>
-              <a class="dropdown-item" href="{% url 'science' %}">วิทยาศาสตร์</a>
-              <a class="dropdown-item" href="{% url 'math' %}">Lorem ipsum</a>
+              <a class="dropdown-item" href="{% url 'math' %}">MATH</a>
+              <a class="dropdown-item" href="{% url 'science' %}">SCIENCE</a>
+              <a class="dropdown-item" href="#">Lorem ipsum</a>
             </div>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link h5 text-light" href="#">Book</a>
+            <a class="nav-link h5 text-light" href="{% url 'computer' %}">Computer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h5 text-light" href="{% url 'tutor' %}">TutorRoom</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
           {% if user.is_superuser %}
           <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-            <p class="h5 text-white font-weight-light">แก้ไขหนังสือ</p>
+            <p class="h5 text-white">แก้ไขหนังสือ</p>
           </a>
           {% else %}
           <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
