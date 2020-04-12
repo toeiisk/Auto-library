@@ -5,24 +5,22 @@
     <div class="display-4 text-center text-light">BOOK INFO</div>
 </div>
 <div class="mt-5 mb-5" style="padding-left: 20%; padding-right: 20%;">
-    <p class="my-4 display-4">Python Programming
+    <p class="my-4 display-4">{{ book.name_book }}
     </p>
     <div class="row">
         <div class="col-md-6">
             <div class="mt-5 text-center">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
+                <img src="{{ book.img_book.url}}" class="img-fluid rounded shadow-lg">
             </div>
         </div>
         <div class="col-md-6">
             <p class="h3 mt-5">Book Description</p>
-            <p class="h4 font-weight-light my-4 book-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing
-                et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+            <p class="h4 font-weight-light my-4 book-desc">{{ book.descri_book }}</p>
             <p class="h3 my-3">Book About</p>
             <p class="h4 font-weight-light">
-                <p class="h4 font-weight-light">Publisher : XXXX</p>
-                <p class="h4 font-weight-light">Location : XXXX</p>
-                <p class="h4 font-weight-light">Amount : XXXX</p>
+                <p class="h4 font-weight-light">Publisher : {{ book.published_id.name }}</p>
+                <p class="h4 font-weight-light">Location : {{ book.location_book }}</p>
+                <p class="h4 font-weight-light">Amount : {{ book.amount_book }}</p>
             </p>
             <a href="{% url 'borrow_notes' %}" role="button" type="button" class="btn px-4 mt-3 shadow-lg mr-2 text-light" style="background-color: #00adb5;">
                 <p class="h5">BORROW</p>
@@ -38,7 +36,24 @@
 
     <p class="h2 my-5">Related Projects</p>
     <div class="row text-center">
-        <div class="col-md-3 col-sm-6 mb-4">
+        {% for at in alltype %}
+        {% if at.id == book.book_type_id.all_type_id.id %}
+            {% for bt in booktype %}
+            {% if bt.id == book.book_type_id.id %}
+                {% for ab in allbook %}
+                {% if ab.book_type_id.id == bt.id  and ab.id != book.id%}
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <a href="{% url 'blogbook' ab.id%}">
+                        <img src="{{ ab.img_book.url}}" class="img-fluid rounded shadow-lg">
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+        {% comment %} <div class="col-md-3 col-sm-6 mb-4">
             <a href="#">
                 <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
             </a>
@@ -72,12 +87,7 @@
             <a href="#">
                 <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
             </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
 {% endblock %}
