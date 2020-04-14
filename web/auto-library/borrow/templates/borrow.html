@@ -11,6 +11,7 @@
 				<p class="h3 mt-3">{{ book.name_book }}</p>
 			</div>
 			<form>
+				{% csrf_token %}
 				<div class="container" style="padding-left: 5%; padding-right: 5%;">
 					 <div class="form-row mt-5 my-5">
 						<div class="form-group col-md-6 mt-4">

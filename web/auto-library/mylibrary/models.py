@@ -82,5 +82,5 @@ class Borrower_Computer(models.Model):
     date = models.DateTimeField()
 
 class Borrow_Book_Info(models.Model):
-    borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
+    borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     book_info_id_book = models.ForeignKey(Book_info, on_delete=models.CASCADE)

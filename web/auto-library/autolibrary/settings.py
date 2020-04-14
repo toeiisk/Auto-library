@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mylibrary',
     'category',
     'borrow',
+    'returnbook',
 ]
 
 MIDDLEWARE = [
