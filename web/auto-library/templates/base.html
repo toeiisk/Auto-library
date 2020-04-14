@@ -49,15 +49,15 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
-          {% if user.is_superuser %}
-          <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-            <p class="h5 text-white">แก้ไขหนังสือ</p>
-          </a>
-          {% else %}
-          <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-            <p class="h5 text-white font-weight-light">Profile</p>
-          </a>
-          {% endif %}
+            {% if user.is_superuser %}
+            <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+              <p class="h5 text-white">แก้ไขหนังสือ</p>
+            </a>
+            {% else %}
+            <a href="{% url 'dashboard' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+              <p class="h5 text-white font-weight-light">Profile</p>
+            </a>
+            {% endif %}
           {% endif %}
           {% if user.is_anonymous  %}
           <a href="{% url 'login' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">

@@ -47,6 +47,8 @@ def register(request):
 
             last_name=request.POST.get('lastname'),
 
+            idcard=request.POST.get('idcard'),
+
             username=request.POST.get('username'),
 
             password=request.POST.get('password'),
@@ -72,6 +74,9 @@ def register(request):
 def my_logout(request):
     logout(request)
     return redirect('index')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
 # d0 = date(2008, 8, 18)
 #     d1 = date(2008, 9, 26)
