@@ -7,30 +7,31 @@
 				<p class="h1 text-center text-light">BORROWING</p>
 			</div>
 			<div class="text-center my-5">
-				<img class="rounded shadow-lg mb-4" src="{{ book.img_book.url}}" alt="">
-				<p class="h3">Lorem ipsum</p>
+				<img class="rounded shadow-lg mb-4" src="{{ book.img_book.url}}" style="width: 35%;">
+				<p class="h3 mt-3">{{ book.name_book }}</p>
 			</div>
 			<form>
 				<div class="container" style="padding-left: 5%; padding-right: 5%;">
 					 <div class="form-row mt-5 my-5">
 						<div class="form-group col-md-6 mt-4">
-							<label for="inputZip"><p class="h4">BOOK ISBN</p></label>
-							{{form.book_isbn}}
+							<label for="bookisbn"><p class="h4">BOOK ISBN</p></label>
+							<input type="text" class="form-control" value="{{ book.isbn }}" readonly>
+							<!-- {{form.book_isbn}} -->
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-12">
-							<label for="inputZip"><p class="h4">BORROWER</p></label>
+							<label for="borrower"><p class="h4">BORROWER</p></label>
 							{{form.borrow_user}}
 						</div>
 					</div>
 					<div class="form-row mt-5 my-5">
 						<div class="form-group col-md-6">
-							<label for="inputZip"><p class="h4">BORROW DATE</p></label>
+							<label for="date"><p class="h4">BORROW DATE</p></label>
 							{{form.date}}
 						</div>
 						<div class="form-group col-md-6">
-							<label for="inputZip"><p class="h4">RETURN DATE</p></label>
+							<label for="returndate"><p class="h4">RETURN DATE</p></label>
 							{{form.return_date}}
 						</div>
 					</div>

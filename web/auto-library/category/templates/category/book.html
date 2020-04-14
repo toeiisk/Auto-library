@@ -18,6 +18,7 @@
             <p class="h4 font-weight-light my-4 book-desc">{{ book.descri_book }}</p>
             <p class="h3 my-3">Book About</p>
             <p class="h4 font-weight-light">
+            <p class="h4 font-weight-light">Book ISBN : {{ book.isbn }}</p>
                 <p class="h4 font-weight-light">Publisher : {{ book.published_id.name }}</p>
                 <p class="h4 font-weight-light">Location : {{ book.location_book }}</p>
                 <p class="h4 font-weight-light">Amount : {{ book.amount_book }}</p>
@@ -53,41 +54,6 @@
             {% endfor %}
         {% endif %}
         {% endfor %}
-        {% comment %} <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img src="{% static 'book_1.jpg' %}" class="img-fluid rounded shadow-lg">
-            </a>
-        </div> {% endcomment %}
     </div>
 </div>
 {% endblock %}

@@ -14,3 +14,9 @@ def borrow_com(request):
     return render(request, 'borrow-com.html', context={
         'form': borrow_form
     })
+
+def borrow_tutor(request):
+    borrow_form = BorrowTutorForm()
+    return render(request, 'borrow-tutor.html', context={
+        'form': borrow_form
+    })

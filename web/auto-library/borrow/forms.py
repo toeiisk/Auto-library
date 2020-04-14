@@ -5,10 +5,10 @@ from mylibrary.models import *
 
 
 class BorrowNotesForm(forms.Form):
-    book_isbn = forms.ModelChoiceField(queryset=Book_info.objects.all(), widget=forms.TextInput(attrs={
-        'class': 'form-control', 
-        'readonly':'readonly'
-        }))
+    # book_isbn = forms.ModelChoiceField(queryset=Book_info.objects.all(), widget=forms.TextInput(attrs={
+    #     'class': 'form-control', 
+    #     'readonly':'readonly'
+    #     }))
     date = forms.DateField(initial=datetime.now(), widget=forms.TextInput(attrs={
         'class': 'form-control', 
         'readonly':'readonly'
@@ -27,6 +27,18 @@ class BorrowComForm(forms.Form):
         'readonly':'readonly'
         }))
     computer = forms.ModelChoiceField(queryset=Computer.objects.all(), widget=forms.Select(attrs={
+        'class': 'form-control'
+        }))
+    borrow_user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={
+        'class': 'form-control'
+        }))
+    
+class BorrowTutorForm(forms.Form):
+    date = forms.DateField(initial=datetime.now(), widget=forms.TextInput(attrs={
+        'class': 'form-control', 
+        'readonly':'readonly'
+        }))
+    tutor_room = forms.ModelChoiceField(queryset=Tutor_room.objects.all(), widget=forms.Select(attrs={
         'class': 'form-control'
         }))
     borrow_user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={

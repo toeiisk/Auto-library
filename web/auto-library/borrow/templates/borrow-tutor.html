@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="d-flex justify-content-center">
+		<div class="blog-borrow my-5">
+			<div class="test p-4 bg-dark rounded">
+				<p class="h1 text-center text-light">BORROWING</p>
+			</div>
+			<div class="text-center my-5">
+				<img class=" mb-4" src="{% static 'computer.png' %}" style="width: 50%;">
+				<p class="h3">Lorem ipsum</p>
+			</div>
+			<form>
+				<div class="container" style="padding-left: 5%; padding-right: 5%;">
+					 <div class="form-row mt-5 my-5">
+						<div class="form-group col-md-12 mt-4">
+							<label for="inputZip"><p class="h4">TUTORROOM</p></label>
+							{{form.tutor_room}}
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="inputZip"><p class="h4">BORROWER</p></label>
+							{{form.borrow_user}}
+						</div>
+					</div>
+					<div class="form-row mt-5 my-5">
+						<div class="form-group col-md-12">
+							<label for="inputZip"><p class="h4">BORROW DATE</p></label>
+							{{form.date}}
+						</div>
+					</div>
+					<button type="button" class="btn btn-lg btn-block px-4 shadow-lg mr-2 text-light" style="background-color: #00adb5;">
+						<p class="h5">BORROW</p>
+					</button>
+					<a href="{% url 'index' %}" class="btn btn-lg btn-block btn-outline-success text-center mb-5 mt-3">HOME</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
