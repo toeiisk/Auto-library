@@ -9,14 +9,19 @@ def borrow_notes(request,num):
         'book': book
     })
 
-def borrow_com(request):
+def borrow_com(request, num):
+    computer = Computer.objects.get(pk=num)
     borrow_form = BorrowComForm()
     return render(request, 'borrow-com.html', context={
-        'form': borrow_form
+        'form': borrow_form,
+        'computer': computer
     })
 
-def borrow_tutor(request):
+def borrow_tutor(request, num):
+    tutorroom = Tutor_room.objects.get(pk=num)
     borrow_form = BorrowTutorForm()
+    print(tutorroom)
     return render(request, 'borrow-tutor.html', context={
-        'form': borrow_form
+        'form': borrow_form,
+        'tutorroom':  tutorroom
     })

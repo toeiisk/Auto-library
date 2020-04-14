@@ -7,15 +7,16 @@
 				<p class="h1 text-center text-light">BORROWING</p>
 			</div>
 			<div class="text-center my-5">
-				<img class=" mb-4" src="{% static 'computer.png' %}" style="width: 50%;">
-				<p class="h3">Lorem ipsum</p>
+				<img class=" mb-4" src="{{ tutorroom.img_tutor.url }}" style="width: 50%;">
+				<p class="h3">Room {{ tutorroom.name_room }}</p>
 			</div>
 			<form>
 				<div class="container" style="padding-left: 5%; padding-right: 5%;">
 					 <div class="form-row mt-5 my-5">
 						<div class="form-group col-md-12 mt-4">
 							<label for="inputZip"><p class="h4">TUTORROOM</p></label>
-							{{form.tutor_room}}
+							<input type="text" class="form-control" value="{{ tutorroom.id }}" readonly>
+							{% comment %} {{form.tutor_room}} {% endcomment %}
 						</div>
 					</div>
 					<div class="form-row">

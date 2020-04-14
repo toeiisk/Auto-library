@@ -21,7 +21,9 @@
 				{% else %}
 					<p class="h5 text-center ">{{tutor.status_room}}</p>
 				{% endif %}
-				<a href="{% url 'borrow_tutor' %}" class="btn btn-outline-info text-center mt-3">BORROW</a>
+				{% if tutor.status_room == 'AVAILABLE' %}
+				<a href="{% url 'borrow_tutor' tutor.id%}" class="btn btn-outline-info text-center mt-3">BORROW</a>
+				{% endif %}
 			</div>
 				
 			{% endfor %}
