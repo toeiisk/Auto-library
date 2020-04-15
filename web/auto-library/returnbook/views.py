@@ -1,10 +1,22 @@
-from django.shortcuts import render
+
 from .forms import *
+from django.shortcuts import render, redirect
+
 # Create your views here.
 def return_book(request,num):
-    return_book = CalculateFines.objects.get(pk=num)
+    returnbook = Borrow_Notes.objects.get(pk=num)
     return_form = ReturnBookForm()
-    return render(request, 'return-book.html', context={
-        'form': return_form,
-        'return_book': return_book
-    })
+    datenow = datetime.now()
+    user = request.user
+    postreturn = CalculateFines(date=datenow,  borrow_user=returnbook, user_id=user)
+    postreturn.save()
+    return redirect('return_book_last')
+
+def return_book_last(request):
+    user = request.user.id
+    book = Borrow_Notes.objects.get(borrow_user=user)
+    # borrow_note = Borrow_Notes.objects.get(borrow_user)
+    calculate = CalculateFines.objects.all()
+    print(book, '---------->', calculate)
+    return render(request, 'return-book.html')
+    

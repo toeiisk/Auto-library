@@ -23,7 +23,6 @@
             <div class="mb-5">
                 <p class="h2 font-weight-bolder my-4">List Borrow Book</p>
                 <hr>
-                {% comment %} update {% endcomment %}
                 <div class="card-deck text-center mt-4">
                     {% for bk in book %}
                     <div class="card shadow rounded mt-3 mb-5">
@@ -32,7 +31,7 @@
                         <div class="card-body">
                             <p class="h4 font-weight-bold card-title">{{bk.book_isbn.name_book}}</p>
                             <hr>
-                            <a href="{% url 'return_book' book.id %}" class="btn btn-outline-primary mt-auto text-center">RETURN</a>
+                            <a href="{% url 'return_book' bk.id %}" class="btn btn-outline-primary mt-auto text-center">RETURN</a>
                         </div>
                     </div>
                     {% endfor %}

@@ -64,11 +64,12 @@ class Borrow_Notes(models.Model):
     date = models.DateTimeField()
     return_date = models.DateTimeField()
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return '(%s)' %(self.id)
 
 class CalculateFines(models.Model):
     date = models.DateTimeField()
-    chrage = models.IntegerField()
-    librarian_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
 
 class Borrower_Tutor_Room(models.Model):
