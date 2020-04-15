@@ -127,7 +127,7 @@ def dashboard(request):
     book = Borrow_Notes.objects.filter(borrow_user=user)
     firstname = request.user.first_name
     lastname = request.user.last_name
-    idcard = Idcard.objects.get(pk=user)
+    useridcard = Idcard.objects.get(pk=user)
     username = request.user
     
 
@@ -135,7 +135,7 @@ def dashboard(request):
     return render(request, 'dashboard.html',
         context={ 'firstname': firstname,
                   'lastname': lastname,
-                  'idcard': idcard,
+                  'useridcard': useridcard,
                   'book': book,
                   'username': username
             

@@ -5,18 +5,14 @@
     <div class="blog-borrow p-3 mt-5">
         <div class="row">
             <div class="col-md-3 text-center">
-                <img src="user.png" alt="..." class="rounded-circle" width="90%">
+                <img src="{% static 'user.png' %}" class="rounded-circle" width="90%">
                 <p class="h3 mt-3">USER</p>
             </div>
             <div class="col-md-9">
-<<<<<<< HEAD
-                
-=======
                 <p class="h4 m-3">Name: {{ user.first_name }} {{ user.last_name }}</p>
                 <p class="h5 m-3">Email: {{ user.email }}</p>
-                <p class="h5 m-3">IDCard: {{ user.idcard }}</p>
+                <p class="h5 m-3">IDCard: {{ useridcard.idcard }}</p>
                 <p class="h5 m-3">Username: {{ user.username }}</p>
->>>>>>> c4669e4a3a19cbbd11332254d53d15526727b67f
             </div>
         </div>
     </div>
@@ -27,46 +23,19 @@
             <div class="mb-5">
                 <p class="h2 font-weight-bolder my-4">List Borrow Book</p>
                 <hr>
-                
+
                 <div class="card-deck text-center mt-4">
-                {% for bk in book %}
+                    {% for bk in book %}
                     <div class="card shadow rounded mt-3 mb-5">
-                        <img class="card-img-top" src="{{ bk.book_isbn.img_book.url }}" alt="Card imagecap" style="width: 100%;">
+                        <img class="card-img-top" src="{{ bk.book_isbn.img_book.url }}" alt="Card imagecap"
+                            style="width: 100%;">
                         <div class="card-body">
                             <p class="h4 font-weight-bold card-title">{{bk.book_isbn.name_book}}</p>
                             <hr>
-                            <a href="#"
-                                class="btn btn-outline-primary mt-auto text-center">RETURN</a>
+                            <a href="#" class="btn btn-outline-primary mt-auto text-center">RETURN</a>
                         </div>
                     </div>
-                {% endfor %}
-                    {% comment %} <div class="card shadow rounded mt-3 mb-5">
-                        <img class="card-img-top" src="1.jpg" alt="Card imagecap" style="width: 100%;">
-                        <div class="card-body">
-                            <p class="h4 font-weight-bold card-title">TEST</p>
-                            <hr>
-                            <a href="#"
-                                class="btn btn-outline-primary mt-auto text-center">RETURN</a>
-                        </div>
-                    </div>
-                    <div class="card shadow rounded mt-3 mb-5">
-                        <img class="card-img-top" src="1.jpg" alt="Card imagecap" style="width: 100%;">
-                        <div class="card-body">
-                            <p class="h4 font-weight-bold card-title">TEST</p>
-                            <hr>
-                            <a href="#"
-                                class="btn btn-outline-primary mt-auto text-center">RETURN</a>
-                        </div>
-                    </div>
-                    <div class="card shadow rounded mt-3 mb-5">
-                        <img class="card-img-top" src="1.jpg" alt="Card imagecap" style="width: 100%;">
-                        <div class="card-body">
-                            <p class="h4 font-weight-bold card-title">TEST</p>
-                            <hr>
-                            <a href="#"
-                                class="btn btn-outline-primary mt-auto text-center">RETURN</a>
-                        </div> {% endcomment %}
-                    {% comment %} </div> {% endcomment %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
