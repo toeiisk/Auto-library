@@ -60,7 +60,7 @@ class Book_info(models.Model):
         return '(%s) %s' %(self.id, self.name_book)
 
 class Borrow_Notes(models.Model):
-    book_isbn = models.CharField(max_length=250, default='SOME STRING')
+    book_isbn = models.ForeignKey(Book_info, on_delete=models.PROTECT)
     date = models.DateTimeField()
     return_date = models.DateTimeField()
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -84,3 +84,9 @@ class Borrower_Computer(models.Model):
 class Borrow_Book_Info(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     book_info_id_book = models.ForeignKey(Book_info, on_delete=models.CASCADE)
+
+class Idcard(models.Model):
+    user_idcard = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
+    idcard = models.CharField(max_length=250)
+    # def __str__(self):
+    #     return '(%s) %s' %(self.user_idcard.first_name) ทำหน่อยๆ

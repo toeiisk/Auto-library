@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import *
 # Create your views here.
-def borrow_notes(request,num):
+def borrow_book(request,num):
     book = Book_info.objects.get(pk=num)
     borrow_form = BorrowNotesForm()
     return render(request, 'borrow.html', context={

@@ -9,10 +9,9 @@
                 <p class="h3 mt-3">USER</p>
             </div>
             <div class="col-md-9">
-                <p class="h4 m-3">{{ user.first_name }} {{ user.last_name }}</p>
-                <p class="h5 m-3">Lorem ipsum</p>
-                <p class="h5 m-3">Lorem ipsum</p>
-                <p class="h5 m-3">Lorem ipsum</p>
+                <p class="h4 m-3">Firstname and Lastname: {{ firstname }} {{ lastname }}</p>
+                <p class="h5 m-3">ID Card: {{ idcard.idcard }}</p>
+                <p class="h5 m-3">Username: {{username }}</p>
             </div>
         </div>
     </div>
@@ -23,8 +22,20 @@
             <div class="mb-5">
                 <p class="h2 font-weight-bolder my-4">List Borrow Book</p>
                 <hr>
+                
                 <div class="card-deck text-center mt-4">
+                {% for bk in book %}
                     <div class="card shadow rounded mt-3 mb-5">
+                        <img class="card-img-top" src="{{ bk.book_isbn.img_book.url }}" alt="Card imagecap" style="width: 100%;">
+                        <div class="card-body">
+                            <p class="h4 font-weight-bold card-title">{{bk.book_isbn.name_book}}</p>
+                            <hr>
+                            <a href="#"
+                                class="btn btn-outline-primary mt-auto text-center">RETURN</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                    {% comment %} <div class="card shadow rounded mt-3 mb-5">
                         <img class="card-img-top" src="1.jpg" alt="Card imagecap" style="width: 100%;">
                         <div class="card-body">
                             <p class="h4 font-weight-bold card-title">TEST</p>
@@ -49,17 +60,8 @@
                             <hr>
                             <a href="#"
                                 class="btn btn-outline-primary mt-auto text-center">RETURN</a>
-                        </div>
-                    </div>
-                    <div class="card shadow rounded mt-3 mb-5">
-                        <img class="card-img-top" src="1.jpg" alt="Card imagecap" style="width: 100%;">
-                        <div class="card-body">
-                            <p class="h4 font-weight-bold card-title">TEST</p>
-                            <hr>
-                            <a href="#"
-                                class="btn btn-outline-primary mt-auto text-center">RETURN</a>
-                        </div>
-                    </div>
+                        </div> {% endcomment %}
+                    {% comment %} </div> {% endcomment %}
                 </div>
             </div>
         </div>

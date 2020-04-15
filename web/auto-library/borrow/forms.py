@@ -9,6 +9,7 @@ class BorrowNotesForm(forms.Form):
     #     'class': 'form-control', 
     #     'readonly':'readonly'
     #     }))
+
     date = forms.DateField(initial=datetime.now(), widget=forms.TextInput(attrs={
         'class': 'form-control', 
         'readonly':'readonly'
