@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <p class="h4 font-weight-bold card-title">{{bk.book_isbn.name_book}}</p>
                             <hr>
-                            <a href="#" class="btn btn-outline-primary mt-auto text-center">RETURN</a>
+                            <a href="{% url 'return_book' book.id %}" class="btn btn-outline-primary mt-auto text-center">RETURN</a>
                         </div>
                     </div>
                     {% endfor %}

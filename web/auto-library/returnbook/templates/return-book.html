@@ -11,6 +11,7 @@
 			<p class="h3 mt-3">{{ book.name_book }}</p>
 		</div>
 		<form>
+		{% csrf_token %}
 			<div class="container" style="padding-left: 5%; padding-right: 5%;">
 				<div class="form-row mt-5 my-5">
 					<div class="form-group col-md-6 mt-4">
@@ -25,7 +26,7 @@
 						<label for="borrower">
 							<p class="h4">BORROWER</p>
 						</label>
-						<input type="text" class="form-control" value="{{ book.isbn }}" readonly>
+						{{form.borrow_user}}
 					</div>
 				</div>
 				<div class="form-row mt-5 my-5">
@@ -33,13 +34,13 @@
 						<label for="date">
 							<p class="h4">RETURN DATE</p>
 						</label>
-						<input type="text" class="form-control" value="{{ book.isbn }}" readonly>
+						{{form.return_date}}
 					</div>
 					<div class="form-group col-md-6">
 						<label for="returndate">
 							<p class="h4">NOW</p>
 						</label>
-						<input type="text" class="form-control" value="{{ book.isbn }}" readonly>
+						{{form.date}}
 					</div>
 				</div>
 				<div class="form-row mt-5 my-5">
