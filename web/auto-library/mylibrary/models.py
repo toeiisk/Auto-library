@@ -9,7 +9,7 @@ class Tutor_room(models.Model):
         (AVAILABLE, 'AVAILABLE'),
         (UNAVAILABLE, 'UNAVAILABLE')
     ]
-
+    
     name_room = models.CharField(max_length=250, default='SOME STRING')
     img_tutor = models.ImageField(upload_to='static/static_dirs/images/tutor/')
     status_room = models.CharField(max_length=12, choices=STATUS, default=AVAILABLE)
@@ -88,10 +88,6 @@ class Borrower_Computer(models.Model):
     date = models.DateTimeField()
     def __str__(self):
         return '(%s) %s' %(self.id, self.borrow_user)
-
-# class Borrow_Book_Info(models.Model):
-#     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     book_info_id_book = models.ForeignKey(Book_info, on_delete=models.CASCADE)
 
 class Idcard(models.Model):
     user_idcard = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
