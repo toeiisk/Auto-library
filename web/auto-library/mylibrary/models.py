@@ -72,23 +72,29 @@ class CalculateFines(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     charg = models.IntegerField(default='1')
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
-
+    def __str__(self):
+        return '(%s) %s' %(self.id, self.user_id)
+    
 class Borrower_Tutor_Room(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     tutor_room = models.ForeignKey(Tutor_room, on_delete=models.CASCADE)
     date = models.DateTimeField()
+    def __str__(self):
+        return '(%s) %s' %(self.id, self.borrow_user)
 
 class Borrower_Computer(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
     date = models.DateTimeField()
+    def __str__(self):
+        return '(%s) %s' %(self.id, self.borrow_user)
 
-class Borrow_Book_Info(models.Model):
-    borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book_info_id_book = models.ForeignKey(Book_info, on_delete=models.CASCADE)
+# class Borrow_Book_Info(models.Model):
+#     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     book_info_id_book = models.ForeignKey(Book_info, on_delete=models.CASCADE)
 
 class Idcard(models.Model):
     user_idcard = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
     idcard = models.CharField(max_length=250)
-    # def __str__(self):
-    #     return '(%s) %s' %(self.user_idcard.first_name) ทำหน่อยๆ
+    def __str__(self):
+        return '(%s) %s' %(self.user_idcard, self.idcard)
