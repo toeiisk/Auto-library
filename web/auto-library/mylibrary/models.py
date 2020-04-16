@@ -63,14 +63,14 @@ class Borrow_Notes(models.Model):
     book_isbn = models.ForeignKey(Book_info, on_delete=models.PROTECT)
     date = models.DateTimeField()
     return_date = models.DateTimeField()
-    charg = models.IntegerField(default='1')
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return '(%s)' %(self.id)
+        return '(%s) %s' %(self.id, self.borrow_user)
 
 class CalculateFines(models.Model):
     date = models.DateTimeField()
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    charg = models.IntegerField(default='1')
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
 
 class Borrower_Tutor_Room(models.Model):
