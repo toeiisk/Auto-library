@@ -58,6 +58,11 @@
   padding-right: 15%;
 }
 
+.card-img-top {
+  width: 100%;
+  height: 25vw;
+}
+
 .blog-book {
   width: 80%;
   min-height: auto;
