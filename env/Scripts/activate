@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\tle\Desktop\Auto-library\env"
+VIRTUAL_ENV="C:\Users\ASUS\Documents\GitHub\Auto-library\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
