@@ -6,10 +6,12 @@
 		<div class="test p-4 bg-dark rounded">
 			<p class="h1 text-center text-light">RETURN BOOK</p>
 		</div>
+		{% for gt in get_return %}
 		<div class="text-center my-5">
-			<img class="rounded shadow-lg mb-4" src="{{ book.img_book.url}}" style="width: 35%;">
-			<p class="h3 mt-3">{{ get_return.date }}asdasd</p>
+			<img class="rounded shadow-lg mb-4" src="{{ gt.borrow_user.book_isbn.img_book.url}}" style="width: 35%;">
+			<p class="h3 mt-3">{{ gt.borrow_user.book_isbn.name_book }}asdasd</p>
 		</div>
+		{% endfor %}
 		<form>
 		{% csrf_token %}
 			<div class="container" style="padding-left: 5%; padding-right: 5%;">
