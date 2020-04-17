@@ -1,7 +1,14 @@
 from django.shortcuts import render
 from mylibrary.models import *
 
-# Create your views here.
+def search_book(request):
+    context = {}
+    search = request.GET.get('search', '') # get ค่าที่มาจาก search
+    context['search'] = search #กำหนดค่าให้
+    context['book'] = Book_info.objects.filter(name_book__icontains=search)
+    #เอาค่า search มาเทียบกับ name ของ Restaurnt เพื่อนำมาแสดง
+    return render(request, 'category/index.html', context=context)
+
 def math(request):
     allbook = Book_info.objects.all()
     publisher = Publisher.objects.all()

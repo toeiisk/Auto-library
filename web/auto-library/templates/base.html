@@ -47,17 +47,22 @@
             <a class="nav-link h5 text-light" href="{% url 'tutor' %}">TutorRoom</a>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
+          <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search_book' %}">
+            <input class="form-control mr-sm-2" id="search" name="search" type="text" placeholder="Search" value="{{search}}">
+          </form>
+        </ul>
+        <ul class="navbar-nav">
           {% if user.is_authenticated %}
-            {% if user.is_superuser %}
-            <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-              <p class="h5 text-white">แก้ไขหนังสือ</p>
-            </a>
-            {% else %}
-            <a href="{% url 'dashboard' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-              <p class="h5 text-white font-weight-light">Profile</p>
-            </a>
-            {% endif %}
+          {% if user.is_superuser %}
+          <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+            <p class="h5 text-white">แก้ไขหนังสือ</p>
+          </a>
+          {% else %}
+          <a href="{% url 'dashboard' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+            <p class="h5 text-white font-weight-light">Profile</p>
+          </a>
+          {% endif %}
           {% endif %}
           {% if user.is_anonymous  %}
           <a href="{% url 'login' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
