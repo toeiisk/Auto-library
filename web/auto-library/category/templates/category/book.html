@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="mt-5 text-center">
-                <img src="{{ book.img_book.url}}" class="img-fluid rounded shadow-lg">
+                <img src="{{ book.img_book.url}}" class="img-fluid rounded shadow-lg book-show">
             </div>
         </div>
         <div class="col-md-6">
@@ -45,7 +45,7 @@
                 {% if ab.book_type_id.id == bt.id  and ab.id != book.id%}
                 <div class="col-md-3 col-sm-6 mb-4">
                     <a href="{% url 'blogbook' ab.id%}">
-                        <img src="{{ ab.img_book.url}}" class="img-fluid rounded shadow-lg">
+                        <img src="{{ ab.img_book.url}}" class="img-fluid rounded shadow-lg book-img">
                     </a>
                 </div>
                 {% endif %}
