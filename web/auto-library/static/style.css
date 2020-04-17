@@ -1,4 +1,6 @@
-้html, body{
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap');
+html, body{
+  font-family: 'Bai Jamjuree', sans-serif;
   background-color: #eeeeee;
 }
 .navbar {

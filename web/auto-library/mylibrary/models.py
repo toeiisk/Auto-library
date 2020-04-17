@@ -56,6 +56,7 @@ class Book_info(models.Model):
     location_book = models.CharField(max_length=250)
     descri_book = models.CharField(max_length=250)
     published_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    
     def __str__(self):
         return '(%s) %s' %(self.id, self.name_book)
 

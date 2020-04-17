@@ -2,6 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.models import Permission
 from .models import *
 
+class Book_infoInline(admin.TabularInline):
+    model = Book_info
+    extra = 0
+
 class Tutor_roomAdmin(admin.ModelAdmin):
     list_display = ['id' ,'name_room', 'status_room']
     list_per_page = 15
@@ -18,6 +22,8 @@ class PublisherAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'address']
     list_per_page = 15
     search_fields = ['name']
+
+    inlines = [Book_infoInline]
 
 class All_typeAdmin(admin.ModelAdmin):
     list_display = ['id' ,'all_type_name']
