@@ -69,10 +69,17 @@ class Borrow_Notes(models.Model):
         return '(%s) %s' %(self.id, self.borrow_user)
 
 class CalculateFines(models.Model):
+    COMPLETE = 'COMPLETE'
+    UNCOMPLETE = 'UNCOMPLETE'
+    STATUS = [
+        (COMPLETE, 'COMPLETE'),
+        (UNCOMPLETE, 'UNCOMPLETE')
+    ]
     date = models.DateTimeField()
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     charg = models.IntegerField(default='1')
     borrow_user = models.ForeignKey(Borrow_Notes, on_delete=models.CASCADE)
+    status_cal = models.CharField(max_length=12, choices=STATUS, default=UNCOMPLETE)
     def __str__(self):
         return '(%s) %s' %(self.id, self.user_id)
     
