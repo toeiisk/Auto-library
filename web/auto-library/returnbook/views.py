@@ -11,8 +11,11 @@ def return_book(request,num):
     user = request.user
     Diff = (datenow - datereturn)
     count = (Diff.days*10)
-    postreturn = CalculateFines(date=datenow,  borrow_user=returnbook, user_id=user, charg=count )
-    postreturn.save()
+    postreturn = CalculateFines.objects.filter(borrow_user=returnbook)
+
+    if len(postreturn) == 0:
+        postreturn = CalculateFines(date=datenow,  borrow_user=returnbook, user_id=user, charg=count)
+        postreturn.save()
 
     get_return = return_book_last1(request, user, returnbook)
     context = {

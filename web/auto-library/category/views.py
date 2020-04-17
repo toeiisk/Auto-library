@@ -45,12 +45,15 @@ def blogbook(request, num):
     alltype = All_type.objects.all()
     allbook = Book_info.objects.all()
 
+    amout_book = book.amount_book
+
     return render (request, 'category/book.html',
                     context={
                         'book' : book,
                         'booktype' : booktype,
                         'alltype' : alltype,
-                        'allbook' : allbook
+                        'allbook' : allbook,
+                        'amount_book' : amout_book
                     }
     )
 

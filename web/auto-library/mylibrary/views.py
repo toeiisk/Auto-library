@@ -81,7 +81,16 @@ def borrowed(request, num):
     book_user = Book_info.objects.get(pk=num)
     post = Borrow_Notes(book_isbn=book_user, date=dateborrow, return_date=datereturn  ,borrow_user=user)
     post.save()
+
+    
+    num = 1
+    number = book_user.amount_book
+    total =  number - num
+    book_user.amount_book = total
+    book_user.save()
     return redirect('dashboard')
+   
+
 
 
 def dashboard(request):
