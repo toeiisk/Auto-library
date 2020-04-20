@@ -1,8 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-
 from .forms import *
-
+from mylibrary.models import *
 
 # Create your views here.
 def borrow_book(request,num):
@@ -16,26 +15,27 @@ def borrow_book(request,num):
 @login_required
 def borrow_com(request, num):
     computer_id = Computer.objects.get(pk=num)
+    user = request.user
     if request.method == 'POST':
         form = BorrowComForm(request.POST)
         if form.is_valid():
-            computer = computer_id
             date = form.cleaned_data['date']
-            borrow_user = request.user.username
-            form.save()
-            print(borrow_user, computer, date)
+            expire_date = form.cleaned_data['expire_date']            
+            post = Borrower_Computer(
+                computer = computer_id, 
+                borrow_user = user,
+                date = date,
+                expire_date = expire_date
+            )
+            post.save()
+            computer_id.status_com = 'UNAVAILABLE'
+            computer_id.save()
+            # computer_id.status_com = 'UNAVAILABLE'
     borrow_form = BorrowComForm()
     return render(request, 'borrow-com.html', context={
         'form': borrow_form,
         'computer': computer_id
     })
-
-# def borrow_computer(request):
-#     form = BorrowComForm(request.POST)
-#     if form.is_valid():
-#         new_form = form.save()
-#     return redirect('index')
-
 
 def borrow_tutor(request, num):
     tutorroom = Tutor_room.objects.get(pk=num)

@@ -26,16 +26,14 @@ class BorrowNotesForm(forms.Form):
 class BorrowComForm(forms.ModelForm):
     class Meta:
         model = Borrower_Computer
-        fields = ('computer', 'date', 'borrow_user')
+        fields = ('date', 'expire_date')
         widgets = {
-            'computer': Select(attrs={'class': 'form-control mb-5'}),
             'date': TextInput(attrs={'class': 'form-control mb-5', 'readonly': 'readonly'}),
-            'borrow_user': Select(attrs={'class': 'form-control mb-5'}),
+            'expire_date': TextInput(attrs={'class': 'form-control mb-5', 'readonly': 'readonly'}),
         }
         labels = {
-        "computer": "COMPUTER",
         "date": "DATE",
-        "borrow_user": "USER",
+        "expire_date": "EXPIRE_DATE",
     }
 
 

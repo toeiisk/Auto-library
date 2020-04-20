@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from mylibrary.models import *
+import datetime
+import pytz
 
 def search_book(request):
     context = {}
@@ -59,11 +61,21 @@ def blogbook(request, num):
 
 def computer(request):
     count = 0
-    nubcom = Computer.objects.filter(status_com='AVAILABLE')
+    datenow = datetime.datetime.now()
     computer = Computer.objects.all()
-     
-    for i in nubcom:
-        count += 1
+    datenow = pytz.utc.localize(datenow)
+    datenow = datenow.replace(tzinfo=pytz.utc)
+    for i in computer:
+        if i.status_com == 'UNAVAILABLE':
+
+            borrower_bomputer = Borrower_Computer.objects.filter(computer=i.id)
+
+            if (borrower_bomputer[0].expire_date < datenow):
+                i.status_com = 'AVAILABLE'
+                i.save()
+
+        if i.status_com == 'AVAILABLE':
+            count += 1
     return render (request, 'category/computerpage.html', 
                     context = {
                         'count' : count,
