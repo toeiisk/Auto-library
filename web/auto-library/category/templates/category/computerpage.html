@@ -22,7 +22,7 @@
 					<p class="h5 text-center ">{{com.status_com}}</p>
 				{% endif %}
 				{% if com.status_com == 'AVAILABLE' %}
-					<a href="{% url 'borrow_com' com.id%}" class="btn btn-outline-info text-center mt-3">BORROW</a>
+					<a href="{% url 'borrow_com' com.id %}" class="btn btn-outline-info text-center mt-3">BORROW</a>
 				{% endif %}
 			</div>
 			{% endfor %}

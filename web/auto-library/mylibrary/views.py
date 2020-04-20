@@ -57,7 +57,7 @@ def register(request):
                     print('Create IDCard')
                     idcard = Idcard(
                         user_idcard = user,
-                        idcard = idcard_value
+                        idcard = idcard_value,
                     )
                     idcard.save()
                 else:
@@ -81,7 +81,6 @@ def borrowed(request, num):
     book_user = Book_info.objects.get(pk=num)
     post = Borrow_Notes(book_isbn=book_user, date=dateborrow, return_date=datereturn  ,borrow_user=user)
     post.save()
-
     
     num = 1
     number = book_user.amount_book
@@ -89,9 +88,6 @@ def borrowed(request, num):
     book_user.amount_book = total
     book_user.save()
     return redirect('dashboard')
-   
-
-
 
 def dashboard(request):
     user = request.user.id
@@ -109,12 +105,3 @@ def dashboard(request):
                   'username': username
         }
     )
-
-# d0 = date(2008, 8, 18)
-#     d1 = date(2008, 9, 26)
-#     amount = d1 - d0
-#     if amount.days > 7:
-#         amount = amount * 10
-#         print(amount.days)
-#     else:
-#         print(amount.days)

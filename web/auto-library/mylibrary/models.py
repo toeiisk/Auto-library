@@ -28,7 +28,7 @@ class Computer(models.Model):
     img_com = models.ImageField(upload_to='static/static_dirs/images/computer/')
     status_com = models.CharField(max_length=12, choices=STATUS, default=AVAILABLE)
     def __str__(self):
-        return '(%s) %s %s' %(self.id, self.name_com, self.status_com) 
+        return '(%s) %s' %(self.id, self.name_com) 
 
 class Publisher(models.Model):
     name = models.CharField(max_length=250, default='SOME STRING')
@@ -93,7 +93,8 @@ class Borrower_Tutor_Room(models.Model):
 class Borrower_Computer(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.now())
+    expire_date = models.DateTimeField(default=datetime.now()+timedelta(hours=1))
     def __str__(self):
         return '(%s) %s' %(self.id, self.borrow_user)
 
@@ -102,3 +103,4 @@ class Idcard(models.Model):
     idcard = models.CharField(max_length=250)
     def __str__(self):
         return '(%s) %s' %(self.user_idcard, self.idcard)
+
