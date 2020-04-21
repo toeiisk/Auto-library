@@ -67,9 +67,7 @@ def computer(request):
     datenow = datenow.replace(tzinfo=pytz.utc)
     for i in computer:
         if i.status_com == 'UNAVAILABLE':
-
             borrower_bomputer = Borrower_Computer.objects.filter(computer=i.id)
-
             if (borrower_bomputer[0].expire_date < datenow):
                 i.status_com = 'AVAILABLE'
                 i.save()

@@ -1,7 +1,8 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from .forms import *
 from mylibrary.models import *
+from .forms import *
 
 # Create your views here.
 def borrow_book(request,num):
@@ -30,7 +31,8 @@ def borrow_com(request, num):
             post.save()
             computer_id.status_com = 'UNAVAILABLE'
             computer_id.save()
-            # computer_id.status_com = 'UNAVAILABLE'
+            messages.success(request, 'Computer Booking is complete :)')
+            return redirect('computer')
     borrow_form = BorrowComForm()
     return render(request, 'borrow-com.html', context={
         'form': borrow_form,

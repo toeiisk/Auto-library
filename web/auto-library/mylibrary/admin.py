@@ -58,7 +58,7 @@ class Borrower_Tutor_RoomAdmin(admin.ModelAdmin):
     search_fields = ['tutor_room']
 
 class Borrower_ComputerAdmin(admin.ModelAdmin):
-    list_display = ['id', 'borrow_user', 'computer', 'date']
+    list_display = ['id', 'borrow_user', 'computer', 'date', 'expire_date']
     list_per_page = 15
     list_filter = ['computer']
     search_fields = ['computer']
