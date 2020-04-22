@@ -12,7 +12,9 @@ def return_book(request,num):
     Diff = (datenow - datereturn)
     count = (Diff.days*10)
     postreturn = CalculateFines.objects.filter(borrow_user=returnbook)
-    
+    # เช็คจำนวนหนังสือ
+    check = Book_info.objects.get(pk=returnbook.book_isbn.id)
+
     if count > 0:
         if len(postreturn) == 0:
             postreturn = CalculateFines(date=datenow,  borrow_user=returnbook, user_id=user, charg=count)
@@ -25,6 +27,10 @@ def return_book(request,num):
         print(context)
         return render(request, 'return-book.html', context=context)
     else:
+        cal = returnbook.book_isbn.amount_book
+        result = cal + 1
+        check.amount_book = result
+        check.save()
         returnbook.delete()
         return redirect('dashboard')
 
