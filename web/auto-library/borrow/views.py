@@ -24,11 +24,11 @@ def borrow_com(request, num):
     user = request.user
     if request.method == 'POST':
         form = BorrowComForm(request.POST)
-
         check = Borrower_Computer.objects.filter(borrow_user=user)
-        check = Computer.objects.get(pk=check[len(check)-1].computer.id)
-        if check.status_com == 'UNAVAILABLE':
-            messages.error(request, 'คุณมีเครื่องที่ยังยืมอยู่')
+        if (check):
+            check = Computer.objects.get(pk=check[len(check)-1].computer.id)
+            if check.status_com == 'UNAVAILABLE':
+                messages.error(request, 'คุณมีเครื่องที่ยังยืมอยู่')
             
         else:
             if form.is_valid():            
@@ -53,7 +53,7 @@ def borrow_com(request, num):
         'form': borrow_form,
         'computer': computer_id,
         'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        'expire_date': (datetime.now()+timedelta(minutes=1)).strftime("%Y-%m-%d %H:%M:%S")
+        'expire_date': (datetime.now()+timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M:%S")
     })
 
 def borrow_tutor(request, num):
