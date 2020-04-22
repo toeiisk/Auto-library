@@ -18,6 +18,11 @@
 						{{form}}
 						<!-- {{ request.user.username }} -->
 					</div>
+					<div style="display: none;">
+						<input type="text" value="{{date}}" id="date">
+						<input type="text" value="{{expire_date}}" id="expire_date">
+					</div>
+					
 				</div>
 				<button type="Submit" class="btn btn-lg btn-block px-4 mb-5 shadow-lg mr-2 text-light"
 					style="background-color: #00adb5;">BORROW</button>
@@ -25,4 +30,12 @@
 		</form>
 	</div>
 </div>
+<script>
+	window.onload = function () {
+		document.getElementById('id_date').value = document.getElementById('date').value
+		document.getElementById('id_expire_date').value = document.getElementById('expire_date').value
+		document.getElementById('id_date').readOnly = true;
+		document.getElementById('id_expire_date').readOnly = true;
+	}
+</script>
 {% endblock %}

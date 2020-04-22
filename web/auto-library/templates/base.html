@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/coliff/bootstrap-rfs/bootstrap-rfs.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
@@ -56,8 +57,8 @@
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
           {% if user.is_superuser %}
-          <a href="#" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
-            <p class="h5 text-white">แก้ไขหนังสือ</p>
+          <a href="{% url 'admin:index' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">
+            <p class="h5 text-white">ADMIN</p>
           </a>
           {% else %}
           <a href="{% url 'dashboard' %}" role="button" type="button" class="btn btn-outline-info mx-2 my-2">

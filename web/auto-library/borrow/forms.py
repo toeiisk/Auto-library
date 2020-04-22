@@ -28,8 +28,8 @@ class BorrowComForm(forms.ModelForm):
         model = Borrower_Computer
         fields = ('date', 'expire_date')
         widgets = {
-            'date': TextInput(attrs={'class': 'form-control mb-5', 'readonly': 'readonly'}),
-            'expire_date': TextInput(attrs={'class': 'form-control mb-5', 'readonly': 'readonly'}),
+            'date': TextInput(attrs={'class': 'form-control mb-5'}),
+            'expire_date': TextInput(attrs={'class': 'form-control mb-5'}),
         }
         labels = {
         "date": "DATE",

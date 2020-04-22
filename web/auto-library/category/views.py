@@ -1,7 +1,11 @@
-from django.shortcuts import render
-from mylibrary.models import *
 import datetime
+from fnmatch import filter
+
 import pytz
+from django.shortcuts import render
+
+from mylibrary.models import *
+
 
 def search_book(request):
     context = {}
@@ -61,18 +65,21 @@ def blogbook(request, num):
 
 def computer(request):
     count = 0
-    datenow = datetime.datetime.now()
+    datenow = datetime.now()
     computer = Computer.objects.all()
     datenow = pytz.utc.localize(datenow)
     datenow = datenow.replace(tzinfo=pytz.utc)
     for i in computer:
-        print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
+        # print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
         if i.status_com == 'UNAVAILABLE':
             borrower_bomputer = Borrower_Computer.objects.filter(computer=i.id)
-            if (borrower_bomputer[0].expire_date < datenow):
+            # print('++++++++++++++++++++++++++++++', borrower_bomputer)
+            if (borrower_bomputer[len(borrower_bomputer)-1].expire_date < datenow):
+                
                 i.status_com = 'AVAILABLE'
-                print("+++++++++++++++++++++++++++++", i.status_com, 'test2')
+                # print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
                 i.save()
+            print(borrower_bomputer[len(borrower_bomputer)-1].expire_date - datenow, '++++++++++')
         if i.status_com == 'AVAILABLE':
             count += 1
     return render (request, 'category/computerpage.html', 
@@ -96,6 +103,3 @@ def tutor(request):
                         'count' : count
                     }
     )
-
-
-

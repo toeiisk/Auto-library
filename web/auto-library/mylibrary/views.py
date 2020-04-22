@@ -3,13 +3,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import auth_logout
 from django.contrib.auth.models import User, Group
 from datetime import date
-from mylibrary.models import Idcard, Book_info, Borrow_Notes
+from mylibrary.models import *
 from datetime import datetime, timedelta
 
 
 # Create your views here.
 def index(request):
-    return render (request, 'index.html')
+    book = Book_info.objects.all()
+    return render(request, 'index.html', 
+        context={ 
+            'book': book,
+        }
+    )
 
 def auth_login(request):
     context = {}

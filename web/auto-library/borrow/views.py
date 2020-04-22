@@ -1,8 +1,13 @@
+from fnmatch import filter
+import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+
 from mylibrary.models import *
+
 from .forms import *
+
 
 # Create your views here.
 def borrow_book(request,num):
@@ -19,25 +24,36 @@ def borrow_com(request, num):
     user = request.user
     if request.method == 'POST':
         form = BorrowComForm(request.POST)
-        if form.is_valid():
-            date = form.cleaned_data['date']
-            expire_date = form.cleaned_data['expire_date']            
-            post = Borrower_Computer(
-                computer = computer_id, 
-                borrow_user = user,
-                date = date,
-                expire_date = expire_date
-            )
-            post.save()
+
+        check = Borrower_Computer.objects.filter(borrow_user=user)
+        check = Computer.objects.get(pk=check[len(check)-1].computer.id)
+        if check.status_com == 'UNAVAILABLE':
+            messages.error(request, 'คุณมีเครื่องที่ยังยืมอยู่')
+            
+        else:
+            if form.is_valid():            
+                date = form.cleaned_data['date']
+                expire_date = form.cleaned_data['expire_date']
+                post = Borrower_Computer(
+                    computer = computer_id, 
+                    borrow_user = user,
+                    date = date,
+                    expire_date = expire_date
+                )
+                post.save()
             computer_id.status_com = 'UNAVAILABLE'
-            print("+++++++++++++++++++++++++++++", computer_id.status_com, "testttttttttttttttt")
             computer_id.save()
+
             messages.success(request, 'Computer Booking is complete :)')
-            return redirect('computer')
+        return redirect('computer')
+
     borrow_form = BorrowComForm()
+
     return render(request, 'borrow-com.html', context={
         'form': borrow_form,
-        'computer': computer_id
+        'computer': computer_id,
+        'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'expire_date': (datetime.now()+timedelta(minutes=1)).strftime("%Y-%m-%d %H:%M:%S")
     })
 
 def borrow_tutor(request, num):
