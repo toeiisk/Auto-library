@@ -30,6 +30,7 @@ def borrow_com(request, num):
             )
             post.save()
             computer_id.status_com = 'UNAVAILABLE'
+            print("+++++++++++++++++++++++++++++", computer_id.status_com, "testttttttttttttttt")
             computer_id.save()
             messages.success(request, 'Computer Booking is complete :)')
             return redirect('computer')
