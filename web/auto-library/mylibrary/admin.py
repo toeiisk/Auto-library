@@ -52,7 +52,7 @@ class CalculateFinesAdmin(admin.ModelAdmin):
     search_fields = ['borrow_user']
 
 class Borrower_Tutor_RoomAdmin(admin.ModelAdmin):
-    list_display = ['id', 'borrow_user', 'tutor_room', 'date']
+    list_display = ['id', 'borrow_user', 'tutor_room', 'date', 'expire_date']
     list_per_page = 15
     list_filter = ['tutor_room']
     search_fields = ['tutor_room']
