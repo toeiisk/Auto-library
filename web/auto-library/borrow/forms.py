@@ -6,11 +6,6 @@ from django.contrib.auth.models import User
 
 
 class BorrowNotesForm(forms.Form):
-    # book_isbn = forms.ModelChoiceField(queryset=Book_info.objects.all(), widget=forms.TextInput(attrs={
-    #     'class': 'form-control', 
-    #     'readonly':'readonly'
-    #     }))
-
     date = forms.DateField(initial=datetime.now(), widget=forms.TextInput(attrs={
         'class': 'form-control', 
         'readonly':'readonly'
@@ -37,14 +32,15 @@ class BorrowComForm(forms.ModelForm):
     }
 
 
-class BorrowTutorForm(forms.Form):
-    date = forms.DateField(initial=datetime.now(), widget=forms.TextInput(attrs={
-        'class': 'form-control', 
-        'readonly':'readonly'
-        }))
-    tutor_room = forms.ModelChoiceField(queryset=Tutor_room.objects.all(), widget=forms.Select(attrs={
-        'class': 'form-control'
-        }))
-    borrow_user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={
-        'class': 'form-control'
-        }))
+class BorrowTutorForm(forms.ModelForm):
+    class Meta:
+        model = Borrower_Tutor_Room
+        fields = ('date', 'expire_date')
+        widgets = {
+            'date': TextInput(attrs={'class': 'form-control mb-5'}),
+            'expire_date': TextInput(attrs={'class': 'form-control mb-5'}),
+        }
+        labels = {
+        "date": "DATE",
+        "expire_date": "EXPIRE_DATE",
+    }

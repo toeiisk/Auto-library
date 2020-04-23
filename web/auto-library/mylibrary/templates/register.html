@@ -6,7 +6,7 @@
         <h1 class="h3 mb-3 font-weight-normal m-4">Create your account</h1>
     </center>
 
-    <form action="{% url 'register' %}" method="POST" id="new_user_form">
+    <form action="{% url 'register' %}" method="POST" class="new_user_form" data-url="/register/">
         {% csrf_token %}
         <div class="row">
             <div class="col-sm-6">
@@ -43,14 +43,32 @@
                 <label for="img_profile">Profile image</label>
                 <input type="file" class="form-control-file" id="img_profile" name="img_profile">
             </div> {% endcomment %}
-            <button type="submit" class="btn btn-lg btn-primary btn-block my-4" value="submit" onclick="Createuser()">Register</button>
+            <input type="submit" class="btn btn-lg btn-primary btn-block my-4" value="submit">
             <p> {{error}} </p>
         </div>
     </form>
 </div>
 <script>
-$(document).ready(function() {
-
+$(document).ready(function(){
+	var $myForm = $('.new_user_form');
+	$myForm.submit(function(event){
+		event.preventDefault();
+		var $formData = $myForm.serialize();
+		var $thisURL = $myForm.attr('data-url') || window.loaction.href;
+		$.ajax({
+			method:'POST',
+			url: $thisURL,
+			data: $formData,
+			success: handleSuccess,
+			error: handleError,
+		});
+		function handleSuccess(data){
+			console.log(data.message);
+		}
+		function handleError(ThrowError){
+			console.log(ThrowError);
+		}
+	});
 });
 </script>
 {% endblock  %}

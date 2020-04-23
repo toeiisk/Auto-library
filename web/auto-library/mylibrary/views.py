@@ -73,6 +73,10 @@ def register(request):
                         idcard = idcard_value,
                     )
                     idcard.save()
+                    data = {
+			        'message':'form is saved'
+			        }
+                    return JsonResponse(data)
                 else:
                     idcard = idcard[0]
                     print(idcard.user_id, idcard)
