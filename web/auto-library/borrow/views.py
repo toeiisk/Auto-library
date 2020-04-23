@@ -62,11 +62,45 @@ def borrow_com(request, num):
         'expire_date': (datetime.now()+timedelta(minutes=1)).strftime("%Y-%m-%d %H:%M:%S")
     })
 
+@login_required
 def borrow_tutor(request, num):
-    tutorroom = Tutor_room.objects.get(pk=num)
+    tutorroom_id = Tutor_room.objects.get(pk=num)
+    user = request.user
+    if request.method == 'POST':
+        status = False
+        form = BorrowTutorForm(request.POST)
+        borrower_tutor_room = Borrower_Tutor_Room.objects.filter(borrow_user=user)
+        if (borrower_tutor_room):
+            tutor_room = Tutor_room.objects.get(pk=borrower_tutor_room[len(borrower_tutor_room)-1].tutor_room.id)
+            if tutor_room.status_room == 'UNAVAILABLE':
+                messages.error(request, 'คุณมีห้องที่จองค้างไว้อยู๋!!!')
+            else:
+                status = True
+        else:
+            status = True
+
+        if status:
+            if form.is_valid():            
+                date = form.cleaned_data['date']
+                expire_date = form.cleaned_data['expire_date']
+                post = Borrower_Tutor_Room(
+                    tutor_room = tutorroom_id, 
+                    borrow_user = user,
+                    date = date,
+                    expire_date = expire_date
+                )
+                post.save()
+            tutorroom_id.status_room = 'UNAVAILABLE'
+            tutorroom_id.save()
+
+            messages.success(request, 'Room Booking is complete :)')
+        return redirect('tutor')
+
     borrow_form = BorrowTutorForm()
-    print(tutorroom)
+
     return render(request, 'borrow-tutor.html', context={
         'form': borrow_form,
-        'tutorroom':  tutorroom
+        'tutorroom': tutorroom_id,
+        'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'expire_date': (datetime.now()+timedelta(minutes=1)).strftime("%Y-%m-%d %H:%M:%S")
     })

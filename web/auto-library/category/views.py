@@ -72,13 +72,13 @@ def computer(request):
     for i in computer:
         # print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
         if i.status_com == 'UNAVAILABLE':
-            borrower_bomputer = Borrower_Computer.objects.filter(computer=i.id)
-            # print('++++++++++++++++++++++++++++++', borrower_bomputer)
-            if (borrower_bomputer[len(borrower_bomputer)-1].expire_date < datenow):
+            borrower_computer = Borrower_Computer.objects.filter(computer=i.id)
+            # print('++++++++++++++++++++++++++++++', borrower_computer)
+            if (borrower_computer[len(borrower_computer)-1].expire_date < datenow):
                 i.status_com = 'AVAILABLE'
                 # print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
                 i.save()
-            print(borrower_bomputer[len(borrower_bomputer)-1].expire_date - datenow, '++++++++++')
+            print(borrower_computer[len(borrower_computer)-1].expire_date - datenow, '++++++++++')
         if i.status_com == 'AVAILABLE':
             count += 1
     return render (request, 'category/computerpage.html', 
@@ -89,13 +89,20 @@ def computer(request):
     )
     
 def tutor(request):
-    tutorroom = Tutor_room.objects.all()
     count = 0
-    nubroom = Tutor_room.objects.filter(status_room='AVAILABLE')
-
-    for i in nubroom:
-        count += 1
-
+    datenow = datetime.now()
+    tutorroom = Tutor_room.objects.all()
+    datenow = pytz.utc.localize(datenow)
+    datenow = datenow.replace(tzinfo=pytz.utc)
+    for i in tutorroom:
+        if i.status_room == 'UNAVAILABLE':
+            borrower_tutor_room = Borrower_Tutor_Room.objects.filter(tutor_room=i.id)
+            if (borrower_tutor_room[len(borrower_tutor_room)-1].expire_date < datenow):
+                i.status_room = 'AVAILABLE'
+                i.save()
+            print(borrower_tutor_room[len(borrower_tutor_room)-1].expire_date - datenow, '++++++++++')
+        if i.status_room == 'AVAILABLE':
+            count += 1
     return render (request, 'category/tutorpage.html', 
                     context = {
                         'tutorroom' : tutorroom,
