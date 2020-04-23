@@ -26,4 +26,3 @@ urlpatterns = [
     path('borrow/', include('borrow.urls')),
     path('returnnook/', include('returnbook.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

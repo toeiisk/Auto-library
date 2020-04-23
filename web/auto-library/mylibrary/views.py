@@ -29,7 +29,13 @@ def auth_login(request):
             next_url = request.POST.get('next_url')
             if next_url: 
                 return redirect(next_url)
-            else:    
+            else:
+                # send_mail(
+                #     'test mail',
+                #     'test email',
+                #     'emailtestlibrary@gmail.com',
+                #     ['parametprame2@gmail.com']
+                # )   
                 return redirect('index')
         else:
             error = "Username or Password Incorrect!!"
@@ -71,7 +77,6 @@ def register(request):
                     idcard = idcard[0]
                     print(idcard.user_id, idcard)
                 print(idcard, user)
-                return redirect('login')
         except Exception as e:           
             context['error'] = str(e)
     return render(request, 'register.html', context=context)
@@ -113,30 +118,30 @@ def dashboard(request):
         }
     )
 
-def check_login(request):
-    if request.method == "GET":
-        raise Http404("URL doesn't exists")
-    else:   
-        response_data = {}
-        login = request.POST["login"]
-        user = None
-        try:
-            try:
-                # we are matching the input again hardcoded value to avoid use of DB.
-                # You can use DB and fetch value from table and proceed accordingly.
-                if login == "rana" or login == "rana1":
-                    user = True
-            except ObjectDoesNotExist as e:
-                pass
-            except Exception as e:
-                raise e
-            if not user:
-                response_data["is_success"] = True
-            else:
-                response_data["is_success"] = False
-        except Exception as e:
-            response_data["is_success"] = False
-            response_data["msg"] = "Some error occurred. Please let Admin know."
+from django.core.mail import send_mail
 
-        return JsonResponse(response_data)
+
+# def check_login(request):
+#     if request.method == "GET":
+#         raise Http404("URL doesn't exitsts")
+#     else:
+#         response_data = {}
+#         login = request.POST['username']
+#         user = None
+#         try:
+#             try:
+#                 user = User.objects.get(login = login)
+#             except ObjectDoesNotExist as e:
+#                 pass
+#             except Exception as e:
+#                 raise e
+#             if not user:
+#                 response_data["is_success"] = True
+#             else:
+#                 response_data["is_success"] = False
+#         except Exception as e:
+#             response_data["is_success"] = False
+#             response_data["msg"] = "Some error."
+        
+#         return JsonResponse(response_data)
 

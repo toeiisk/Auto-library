@@ -86,7 +86,8 @@ class CalculateFines(models.Model):
 class Borrower_Tutor_Room(models.Model):
     borrow_user = models.ForeignKey(User, on_delete=models.CASCADE)
     tutor_room = models.ForeignKey(Tutor_room, on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=datetime.now())
+    expire_date = models.DateTimeField(default=datetime.now()+timedelta(minutes=15))
     def __str__(self):
         return '(%s) %s' %(self.id, self.borrow_user)
 
@@ -94,7 +95,7 @@ class Borrower_Computer(models.Model):
     borrow_user = models.ForeignKey(User , on_delete=models.CASCADE)
     computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
     date = models.DateTimeField(default=datetime.now())
-    expire_date = models.DateTimeField(default=datetime.now()+timedelta(minutes=15))
+    expire_date = models.DateTimeField(default=datetime.now()+timedelta(minutes=1))
     def __str__(self):
         return '(%s) %s' %(self.id, self.borrow_user)
 

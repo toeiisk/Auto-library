@@ -73,7 +73,6 @@ def computer(request):
         if i.status_com == 'UNAVAILABLE':
             borrower_bomputer = Borrower_Computer.objects.filter(computer=i.id)
             if (borrower_bomputer[len(borrower_bomputer)-1].expire_date < datenow):
-                
                 i.status_com = 'AVAILABLE'
                 i.save()
             print(borrower_bomputer[len(borrower_bomputer)-1].expire_date - datenow, '++++++++++')
