@@ -5,6 +5,7 @@ from django.contrib.auth.models import User, Group
 from datetime import date
 from mylibrary.models import *
 from datetime import datetime, timedelta
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -27,8 +28,19 @@ def auth_login(request):
             next_url = request.POST.get('next_url')
             if next_url: 
                 return redirect(next_url)
-            else:    
+
+
+            else:
+                send_mail(
+                    'test mail',
+                    'test email',
+                    'emailtestlibrary@gmail.com',
+                    ['parametprame2@gmail.com']
+                )    
                 return redirect('index')
+                
+
+
         else:
             error = "Username or Password Incorrect!!"
             context['username'] = username
