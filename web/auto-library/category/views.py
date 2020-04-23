@@ -70,10 +70,13 @@ def computer(request):
     datenow = pytz.utc.localize(datenow)
     datenow = datenow.replace(tzinfo=pytz.utc)
     for i in computer:
+        # print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
         if i.status_com == 'UNAVAILABLE':
             borrower_bomputer = Borrower_Computer.objects.filter(computer=i.id)
+            # print('++++++++++++++++++++++++++++++', borrower_bomputer)
             if (borrower_bomputer[len(borrower_bomputer)-1].expire_date < datenow):
                 i.status_com = 'AVAILABLE'
+                # print("+++++++++++++++++++++++++++++", i.status_com, 'test1')
                 i.save()
             print(borrower_bomputer[len(borrower_bomputer)-1].expire_date - datenow, '++++++++++')
         if i.status_com == 'AVAILABLE':

@@ -5,7 +5,7 @@ from django.contrib.auth.views import auth_logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, JsonResponse
 from django.shortcuts import redirect, render
-
+from django.core.mail import send_mail
 from mylibrary.models import *
 
 
@@ -117,9 +117,6 @@ def dashboard(request):
                   'username': username
         }
     )
-
-from django.core.mail import send_mail
-
 
 # def check_login(request):
 #     if request.method == "GET":
